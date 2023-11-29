@@ -1,0 +1,168 @@
+/*color del logo de lego del rojo: rgba(228,0,3,255)*/
+
+body{
+    /*evitar que salta la barrita de deslizar al abrir el menu lateral*/
+    overflow-x: hidden;
+}
+
+/*#region menulateral*/
+
+.inputClass {
+    /*queremos que no se vea la caja del label solo queremos el placeholder*/
+    visibility:hidden;
+    margin-top: 0;
+    position: absolute;
+}
+
+.labelCerrar {
+    /*te pone el cursor como seleccionando algo*/
+    cursor:pointer;
+    padding: 15px;
+    background-color: rgb(198, 196, 196);
+    color:#fff;
+    /*para que se vea ocupando todo el ancho de la pantalla*/
+    display:inline-block;
+    width:100%;
+    /*para que vuelva de una forma smooth*/
+    transition: 0.4s;
+    position: sticky;
+    top: 0;
+}
+
+.sidebar {
+    width:0;
+    position: fixed;
+    height: 100%;
+    /*top 0 porque si no se veria debajo del */
+    top: 0;
+    background-color: rgb(198, 196, 196);
+    /*ocultamos la barra de mover*/
+    overflow-x: hidden;
+    /*para que vuelva a su posicion de una forma smooth*/
+    transition: 0.4s;
+    padding: 15px 0;
+}
+
+/*cuando el label abrircerrar esta clickeado pues la sidebar hace lo siguiente*/
+.inputClass:checked ~ .sidebar {
+    width:224px;
+    transition: width .4s;
+}
+
+/*cuando el label abrircerrar esta clickeado pues la sidebar y el contenido hace lo siguiente*/
+.inputClass:checked + .labelCerrar, .inputClass:checked ~ .contenido {
+    margin-left:224px;
+    transition: margin-left .4s;
+}
+
+.sidebar ul, .sidebar li{
+    margin:0;
+    padding:0;
+    /*list style none hace que no tenga nada delante de los li como circulitos o cosas*/
+}
+
+.sidebar ul {
+    margin: 25px auto;
+    display: block;
+    width: 80%;
+    min-width:100px;
+}
+
+.sidebar li{
+    /*hacemos display como bloque para que todos tengan el mismo tamaño*/
+    display: block;
+    font-size: 120%;
+    color:#fff;
+    /*ponemos la decoration del texto en none para evitar que nos lo subraye google como enlace*/
+    text-decoration: none;
+    
+}
+
+/*al estar sobre un enlace dentro del sidebar*/
+.sidebar label:hover{
+    background-color: rgb(184, 181, 181);
+}
+
+.contenido{
+    /*para que vuelva de una forma smooth*/
+    transition: 0.4s;
+}
+
+/*#endregion*/
+
+/*---------------------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------------------*/
+/*------------------------------a partir de aqui empieza la parte de submenus------------------------------*/
+/*---------------------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------------------*/
+
+/*#region submenus*/
+
+.chevrot{
+    display: inline-block;
+    position: absolute;
+    height: 25.57px;
+    margin-top: 1.4px;  
+    transition: 0.4s;
+}
+
+.sidebar span{
+    margin-left: 25px;
+}
+
+.inputClassComprar, .inputClassHistoria, .inputClassAyuda, .inputClassDonde {
+    /*queremos que no se vea la caja del label solo queremos el placeholder*/
+    visibility:hidden;
+    margin-top: 0;
+    position: absolute;
+}
+
+.labelComprar, .labelHistoria, .labelAyuda, .labelDonde {
+    /*te pone el cursor como seleccionando algo*/
+    cursor:pointer;
+    
+    background-color: rgb(198, 196, 196);
+    color:#fff;
+    /*para que se vea ocupando todo el ancho de la pantalla*/
+    display:inline-block;
+    width:100%;
+    /*para que vuelva de una forma smooth*/
+    transition: 0.4s;
+    position: sticky;
+    top: 0;
+}
+
+.comprar, .historia, .donde, .ayuda{
+    height: 0PX;
+    overflow-y: hidden;
+    background-color: rgb(184, 181, 181);
+    /*para que vuelva a su posicion de una forma smooth*/
+    transition: 0.4s;
+}
+
+.comprar ul, .ayuda ul, .historia ul, .donde ul{
+    margin: auto;
+    margin-left: 35px;
+}
+
+.comprar li, .ayuda li, .historia li, .donde li{
+    font-size: 70%;
+}
+
+.inputClassComprar:checked ~ .comprar, .inputClassAyuda:checked ~ .ayuda, .inputClassDonde:checked ~ .donde, .inputClassHistoria:checked ~ .historia{
+    height:35px;
+    transition: height .4s;
+}
+
+/*pequeña transicion de rotacion de la imagen*/
+.inputClassComprar:checked + .labelComprar .chevrot, .inputClassAyuda:checked + .labelAyuda .chevrot, .inputClassHistoria:checked + .labelHistoria .chevrot, .inputClassDonde:checked + .labelDonde .chevrot{
+    transform: rotate(90deg);
+    transition: transform .4s;
+}
+
+/*cuando el label abrircerrar esta clickeado pues la sidebar y el contenido hace lo siguiente*/
+.inputClassComprar:checked + .labelCerrar, .inputClassComprar:checked + .contenido {
+    margin-left:440px;
+    transition: margin-left .4s;
+}
+/*#endregion*/
